@@ -35,12 +35,15 @@ embbeding을 빌드하도록 코드를 수정 하였다. /kin/BiMPM/main_local.p
 즉, 위에 있는 링크의 도커들은 사용 할 수 없다. 저 도커를 활용해서 새로운 도커 이미지를 만든다면 사용 할 수 있겠지만 당시 필자는 도커 이미지 만드는 방법을 몰랐기 때문에 도크허브 검색을 통해서 맞는 도커를 찾는데 집중하였다. 조건에 맞는 대부분의 도커를 사용해봤고 동작하는 도커 하나를 겨우 찾을 수 있었다. floydhub/tensorflow:1.5.0-gpu.cuda8cudnn6-py3_aws.22 이 도커는 tensorflow 1.5 gpu를 지원 한다. 단점은 nsml에서 기본 제공하는 도커에 비하면 굉장히 드리다는 것이다. session을 여는데 약 3분 정도가 소요된다.
 
 
-2.word embbeding을 저장하기위한 nsml save함수 사용법 문제
+2.  word embbeding을 저장하기위한 nsml save함수 사용법 문제
  
 학습과 submit은 독립적으로 이루어 진다. 즉, 학습을 할때 nsml.save() 함수를 통해 모델을 중간 중간 저장하고 submit때는 이 것을 불러온 후 submit을 진행 하게 된다. 바로 이 부분에서 문제가 발생하게 되는데 nsml.save() 함수의 내용은 밑과 같은데, 
 
 ![nsml.save ori](./image/im2.png)
 
+보면 tensorflow의 Saver 함수를 사용해서 모델을 저장한다. 그런데 이 Saver 함수는 모델 그래프와 tensor들만 저장 하기 때문에 word embbeding에 필요한 word vocablary, char vocablary는 사전 형태로 되어있기 때문에 저장이 안된다. 이렇게 되면 submit 과정을 수행 할 때 모델은 로드를 해도 vocablary는 날아가 있기 때문에 테스트 데이터를 벡터로 변환 할 수 없게 되어서 error가 난다. 이를 해결하기 위해서는 사전형태의 vocablary를 따로 저장 할 필요성이 있다. 필자는 vocablary를 pickel file로 만들어서 nsml.save()때 저장하는 방법을 사용하였다. 수정된 코드는 밑과 같다. 
+
+![nsml.save ori](./image/im3.png)
 
 ----
 ![testimage](./image/test1.png)
