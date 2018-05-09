@@ -14,6 +14,7 @@
 - 질문 유사도 문제
 
 질문 유사도 문제를 풀기 위해서 사용한 알고리즘은 [BiMPM](https://arxiv.org/pdf/1702.03814.pdf) 이란 알고리즘으로 이 [github](https://github.com/zhiguowang/BiMPM)의 코드를 기본으로 해서 코드를 수정하여 만들었다. 
+
 본래 bimpm 코드에서는 word embbeding을 위한 word vector를 사전학습을 먼저 시킨 후 txt파일로 폴더내에 저장해 놓는다. 그리고 main 코드에서 모델을 빌드할 때 이 txt파일을 불러와서 사용하게 된다. 하지만 nsml에서는 코드가 로컬 컴퓨터에서 실행 되는것이 아니라 nsml 서버에서 실행이 된다. 이때 .py file만 서버로 가져가기 때문에 txt파일을 사용 할 수 없게된다. 그래서 필자는 코드가 nsml서버로 보내진 뒤 학습 데이터를 전 처리 할때 word embbeding을 빌드하도록 코드를 수정 하였다. /kin/BiMPM/main_local.py 의 268 ~ 279 line의 코드가 이 과정을 수행한다.
  
 
