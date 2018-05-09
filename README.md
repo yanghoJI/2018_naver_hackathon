@@ -39,7 +39,7 @@ embbeding을 빌드하도록 코드를 수정 하였다. /kin/BiMPM/main_local.p
  
 학습과 submit은 독립적으로 이루어 진다. 즉, 학습을 할때 nsml.save() 함수를 통해 모델을 중간 중간 저장하고 submit때는 이 것을 불러온 후 submit을 진행 하게 된다. 바로 이 부분에서 문제가 발생하게 되는데 nsml.save() 함수의 내용은 밑과 같은데, 
 
-
+![nsml.save ori](./image/im2.png)
 
 
 ----
