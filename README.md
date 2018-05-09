@@ -45,6 +45,8 @@ embbeding을 빌드하도록 코드를 수정 하였다. /kin/BiMPM/main_local.p
 
 ![nsml.save ori](./image/im3.png)
 
+여기서 중요한 점은 bind_model의 인자로 vocablary들을 추가 해주어야 한다는 점과 ckpt 파일이 저장되는 곳과 동일한 장소에 pickle 파일을 저장해야 한다는 것이다. 이렇게 코드를 수정 함으로써 submit이 실행 됐을때 load 함수에서 pickle 파일을 불러오게 되고 학습때와 동일한 vocablary를 얻을 수 있게 된다.
+
 ----
 ![testimage](./image/test1.png)
 
