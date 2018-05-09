@@ -24,7 +24,8 @@ embbeding을 빌드하도록 코드를 수정 하였다. /kin/BiMPM/main_local.p
 1. docker 문제
 
  이 문제는 로컬에서 debug용 학습데이터를 이용해서 코드를 실행했을때 문제 없이 돌아가서 nsml서버를 통해서 학습시키고자 했을때 나타났다. 문제의 원인은 nsml에서 기본으로 제공하는 도커의 경우 tensorflow 1.4 버전이다. 그러나 본 코드의 경우 1.5이상 버전에서만 동작을 하기 때문에 문제가 발생하였다. 이에 대해서 질문한 결과 [도크허브 링크](https://hub.docker.com/r/tensorflow/tensorflow/tags/)를 추천 받았다. 이 곳은 tensorflow 모든 버전들이 도커로 제공되어 있는 곳이다. 하지만 문제가 있다. 좀 이해가 안되지만 tensorflow 도커지만 cuda가 포함되어 있지 않다는 것이다. 그래서 그냥 사용하게 되면 밑과 같은 error를 볼 수 있다. 
- 
+
+![cuda error](./image/im1.png)
  
 
 
