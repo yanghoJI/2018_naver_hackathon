@@ -51,3 +51,5 @@ embbeding을 빌드하도록 코드를 수정 하였다. /kin/BiMPM/main_local.p
 ![testimage](./image/test1.png)
 
 
+##git test##
+
