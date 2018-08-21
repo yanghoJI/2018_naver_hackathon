@@ -6,9 +6,14 @@
 + test2
 ****
 test3
+<<<<<<< HEAD
 
 test4 
 test5
 
 # 수정을 많이한다아~~~~~
+=======
+>>>>>>> 6cccc150350cbdf0b57581dbbe92ca534a1bcc9e
 
+test4 
+test5
