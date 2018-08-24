@@ -47,6 +47,14 @@ embbeding을 빌드하도록 코드를 수정 하였다. /kin/BiMPM/main_local.p
 
 여기서 중요한 점은 bind_model의 인자로 vocablary들을 추가 해주어야 한다는 점과 ckpt 파일이 저장되는 곳과 동일한 장소에 pickle 파일을 저장해야 한다는 것이다. 이렇게 코드를 수정 함으로써 submit이 실행 됐을때 load 함수에서 pickle 파일을 불러오게 되고 학습때와 동일한 vocablary를 얻을 수 있게 된다.
 
+
+### 1차 예선 결과 
+
+ 질문 유사도 문제의 경우 위의 두가지 문제를 해결하고 submit을 한 결과 꾀 높은 성공률을 볼 수 있었고, 이를 기반으로 약간의 파라미터 튜닝 과정을 거쳐서 최종적으로 예선 1차를 4위로 마무리 할 수 있었다. phase1/kin/main.py file이 실제 제출한 코드이고, main_local.py는 nsml을 사용하지 않고 로컬에서 테스트 해볼 수 있는 코드이다. 영화 평점의 경우 시간이 부족하여 1차예선에서는 네이버에서 제공한코드를 파리미터 튜닝하여 사용하였다.
+ 
+![p1result](./image/p1result.png) 
+
+
 ----
 ![testimage](./image/test1.png)
 
