@@ -1,4 +1,4 @@
-# 2018_naver_hackertone
+# 2018_naver_hackathon
 
 
 
