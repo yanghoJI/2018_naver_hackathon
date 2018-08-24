@@ -54,6 +54,12 @@ embbeding을 빌드하도록 코드를 수정 하였다. /kin/BiMPM/main_local.p
  
 ![p1result](./image/p1result_.png) 
 
+* * *
+
+#2차 예선 (4월10일 ~16일)
+
+
+
 
 ----
 ![testimage](./image/test1.png)
