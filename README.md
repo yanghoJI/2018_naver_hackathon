@@ -12,6 +12,12 @@
  질문 유사도 문제를 예를 들어서 진행 과정을 서술한다.
  
 - 질문 유사도 문제
+
+Requirements:
+
+ * Python 3
+ * tensorflow > 0.12
+ * Numpy
 동작 환경 : python3.5 이상, tensorflow 1.5 이상
 
 질문 유사도 문제를 풀기 위해서 사용한 알고리즘은 [BiMPM](https://arxiv.org/pdf/1702.03814.pdf) 이란 알고리즘으로 이 [github](https://github.com/zhiguowang/BiMPM)의 코드를 기본으로 해서 코드를 수정하여 만들었다. 
@@ -50,7 +56,7 @@ embbeding을 빌드하도록 코드를 수정 하였다. /kin/BiMPM/main_local.p
 
 ### 1차 예선 결과 
 
- 질문 유사도 문제의 경우 위의 두가지 문제를 해결하고 submit을 한 결과 꾀 높은 성공률을 볼 수 있었고, 이를 기반으로 약간의 파라미터 튜닝 과정을 거쳐서 최종적으로 예선 1차를 5위로 마무리 할 수 있었다. phase1/kin/main.py file이 실제 제출한 코드이고, main_local.py는 nsml을 사용하지 않고 로컬에서 테스트 해볼 수 있는 코드이다. 영화 평점의 경우 시간이 부족하여 1차예선에서는 네이버에서 제공한코드를 파리미터 튜닝하여 사용하였다.
+ 질문 유사도 문제의 경우 위의 두가지 문제를 해결하고 submit을 한 결과 꾀 높은 성공률을 볼 수 있었고, 이를 기반으로 약간의 파라미터 튜닝 과정을 거쳐서 최종적으로 예선 1차를 5위로 마무리 할 수 있었다. phase1/kin/main.py file이 실제 제출한 코드이고, main_local.py는 nsml을 사용하지 않고 로컬에서 테스트 해볼 수 있는 코드이다. 영화 평점의 경우 시간이 부족하여 1차예선에서는 네이버에서 제공한 코드를 파리미터 튜닝하여 사용하였다.
  
 ![p1result](./image/p1result_.png) 
 
@@ -58,6 +64,18 @@ embbeding을 빌드하도록 코드를 수정 하였다. /kin/BiMPM/main_local.p
 
 # 2차 예선 (4월10일 ~16일)
 
+ 2차 예선에서는 영화 평점 알고리즘 개발에 집중 하였다. 유사도 문제의 경우 1차 예선에 썼던 알고리즘을 그대로 쓰고 적절한 파라미터를 찾는 작업을 하였다. 영화 평점 알고리즘의 경우 [Convolutional Neural Networks for Sentence Classification (EMNLP 2014)](https://arxiv.org/abs/1408.5882)을 사용하였다. 이 알고리즘을 기초로 해서 2가지 변형을 추가하여서 총 3가지의 모델을 만들어서 2차 예선에 제출 하였다. 이를 차례대로 소개 한다.
+ 
+ Requirements
+ 
+ * Python 3
+ * tensorflow > 0.12
+ * Numpy
+ * nsml
+ 
+ 1. basic text CNN (./phase2/movie/basic_CNN_baseline/)
+  
+  모델의 구성을 논문에 나온 그대로 하고 데이터를 전처리 하는 부분(data_helpers_nsml.py)과 제출하기 위해 출력 포멧(main.py)을 맞추는 부분을 수정하였다. 그리고 main code의 경우 nsml에서 사용이 가능하도록 구성을 수정 하였다. 코드는 이 [github](https://github.com/dennybritz/cnn-text-classification-tf)의 내용을 사용하여 작성하였다. 
 
 
 
