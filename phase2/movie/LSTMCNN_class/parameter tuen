@@ -1,0 +1,9 @@
+MOS
+
+main_nsml
+nsml run -d movie_phase2 -e LstmCnn_class_nsml.py
+
+nsml submit kimsunmok/movie_phase2/14 0
+
+
+
