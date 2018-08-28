@@ -101,12 +101,8 @@ embbeding을 빌드하도록 코드를 수정 하였다. /kin/BiMPM/main_local.p
  ![p1movieresult](./image/p2result_2.png)
 
 
+# 결선 (4월26일 ~27일)
 
 
 
-----
-![testimage](./image/test1.png)
-
-
-##git test##
 
