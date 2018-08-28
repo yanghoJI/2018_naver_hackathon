@@ -56,7 +56,8 @@ embbeding을 빌드하도록 코드를 수정 하였다. /kin/BiMPM/main_local.p
 
 ### 1차 예선 결과 
 
- 질문 유사도 문제의 경우 위의 두가지 문제를 해결하고 submit을 한 결과 꾀 높은 성공률을 볼 수 있었고, 이를 기반으로 약간의 파라미터 튜닝 과정을 거쳐서 최종적으로 예선 1차를 5위로 마무리 할 수 있었다. phase1/kin/main.py file이 실제 제출한 코드이고, main_local.py는 nsml을 사용하지 않고 로컬에서 테스트 해볼 수 있는 코드이다. 영화 평점의 경우 시간이 부족하여 1차예선에서는 네이버에서 제공한 코드를 파리미터 튜닝하여 사용하였다.
+- 질문 유사도 :  submit을 한 결과 꾀 높은 성공률을 볼 수 있었다. 이를 기반으로 약간의 파라미터 튜닝 과정을 거쳐서 최종적으로 예선 1차를 5위로 마무리 할 수 있었다. phase1/kin/main.py file이 실제 제출한 코드이고, main_local.py는 nsml을 사용하지 않고 로컬에서 테스트 해볼 수 있는 코드이다. 
+- 영화 평점 : 시간이 부족하여 1차예선에서는 네이버에서 제공한 코드를 파리미터 튜닝하여 사용하였다. 50위권에 랭크 되었다.
  
 ![p1result](./image/p1result_.png) 
 
@@ -66,6 +67,7 @@ embbeding을 빌드하도록 코드를 수정 하였다. /kin/BiMPM/main_local.p
 
  2차 예선에서는 영화 평점 알고리즘 개발에 집중 하였다. 유사도 문제의 경우 1차 예선에 썼던 알고리즘을 그대로 쓰고 적절한 파라미터를 찾는 작업을 하였다. 영화 평점 알고리즘의 경우 [Convolutional Neural Networks for Sentence Classification (EMNLP 2014)](https://arxiv.org/abs/1408.5882)을 사용하였다. 이 알고리즘을 기초로 해서 2가지 변형을 추가하여서 총 3가지의 모델을 만들어서 2차 예선에 제출 하였다. 이를 차례대로 소개 한다.
  
+ 
  Requirements
  
  * Python 3
@@ -73,9 +75,29 @@ embbeding을 빌드하도록 코드를 수정 하였다. /kin/BiMPM/main_local.p
  * Numpy
  * nsml
  
- 1. basic text CNN (./phase2/movie/basic_CNN_baseline/)
+ 
+1. basic text CNN (./phase2/movie/basic_CNN_baseline/)
   
   모델의 구성을 논문에 나온 그대로 하고 데이터를 전처리 하는 부분(data_helpers_nsml.py)과 제출하기 위해 출력 포멧(main.py)을 맞추는 부분을 수정하였다. 그리고 main code의 경우 nsml에서 사용이 가능하도록 구성을 수정 하였다. 코드는 이 [github](https://github.com/dennybritz/cnn-text-classification-tf)의 내용을 사용하여 작성하였다. 
+
+2. LSTM CNN (./phase2/movie/LSTMCNN/)
+
+  1번의 모델 성능이 뛰어나지 않았기 때문에 다른 여러 모델을 고려하던중 LSTM을 사용하여 특징 벡터를 추출하고 이 벡터를 다시 CNN을 사용하여 영화 평점을 예측하는 모델을 찾아서 이를 사용해 보았다. 이 모델은 이 [github](https://github.com/pmsosa/CS291K)의 코드를 수정하여 사용하였다.
+  이 폴더내의 main_debug.py의 경우 nsml의 설치 없이도 실행이 가능하다. 
+  
+3. LSTM CNN classify(./phase2/movie/LSTMCNN_class/)
+
+  1, 2번 모델의 경우 모델의 최종 값이 0~1사이의 값을 갖고 여기에 x10을 해서 최종 예측 점수로 사용한다. 뛰어난 결과를 얻지 못했기 때문에 여러가지를 시도 하던중 0~1값을 출력하는 regression모델이 아니라 1점에서 10점까지 1점 간격으로 10개의 클래스를 갖는 classify 모델로 재구성 해보았다.
+  
+### 2차 예선 결과
+ 
+ - 질문 유사도 : 다른 파라미터 보다는 dropout의 정도가 성능에 큰 영향을 준다는 것을 찾았다. 1차예선보다 학습데이터양이 늘었고, 주요한 파라미터를 찾음으로써 4위에 랭크 되었다.
+ 
+ - 영화 평점 : CNN기반의 모델을 적용함으로 20등 이내로 들어올 수 있었지만, 다른 여러가지 모델을 사용해 보아도 크게 성능이 향상 되지는 않았다. 19위에 랭크 되었다.
+ 
+ 
+
+
 
 
 
