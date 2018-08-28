@@ -95,7 +95,9 @@ embbeding을 빌드하도록 코드를 수정 하였다. /kin/BiMPM/main_local.p
  
  - 영화 평점 : CNN기반의 모델을 적용함으로 20등 이내로 들어올 수 있었지만, 다른 여러가지 모델을 사용해 보아도 크게 성능이 향상 되지는 않았다. 19위에 랭크 되었다.
  
+ ![p1kinresult](./image/p2result_.png)
  
+ ![p1movieresult](./image/p2result_2.png)
 
 
 
