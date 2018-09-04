@@ -45,11 +45,16 @@ embbeding을 빌드하도록 코드를 수정 하였다. /kin/BiMPM/main_local.p
  
 학습과 submit은 독립적으로 이루어 진다. 즉, 학습을 할때 nsml.save() 함수를 통해 모델을 중간 중간 저장하고 submit때는 이 것을 불러온 후 submit을 진행 하게 된다. 바로 이 부분에서 문제가 발생하게 되는데 nsml.save() 함수의 내용은 밑과 같은데, 
 
-![nsml.save ori](./image/im2.png)
+<p align="center">
+<img  src=./image/im2.png width="70%">
+</p>
+
 
 보면 tensorflow의 Saver 함수를 사용해서 모델을 저장한다. 그런데 이 Saver 함수는 모델 그래프와 tensor들만 저장 하기 때문에 word embbeding에 필요한 word vocablary, char vocablary는 사전 형태로 되어있기 때문에 저장이 안된다. 이렇게 되면 submit 과정을 수행 할 때 모델은 로드를 해도 vocablary는 날아가 있기 때문에 테스트 데이터를 벡터로 변환 할 수 없게 되어서 error가 난다. 이를 해결하기 위해서는 사전형태의 vocablary를 따로 저장 할 필요성이 있다. 필자는 vocablary를 pickel file로 만들어서 nsml.save()때 저장하는 방법을 사용하였다. 수정된 코드는 밑과 같다. 
 
-![nsml.save ori](./image/im3.png)
+<p align="center">
+<img  src=./image/im3.png width="70%">
+</p>
 
 여기서 중요한 점은 bind_model의 인자로 vocablary들을 추가 해주어야 한다는 점과 ckpt 파일이 저장되는 곳과 동일한 장소에 pickle 파일을 저장해야 한다는 것이다. 이렇게 코드를 수정 함으로써 submit이 실행 됐을때 load 함수에서 pickle 파일을 불러오게 되고 학습때와 동일한 vocablary를 얻을 수 있게 된다.
 
