@@ -16,9 +16,9 @@
 Requirements:
 
  * Python 3
- * tensorflow > 0.12
+ * tensorflow > 1.5
  * Numpy
-동작 환경 : python3.5 이상, tensorflow 1.5 이상
+ * nsml
 
 질문 유사도 문제를 풀기 위해서 사용한 알고리즘은 [BiMPM](https://arxiv.org/pdf/1702.03814.pdf) 이란 알고리즘으로 이 [github](https://github.com/zhiguowang/BiMPM)의 코드를 기본으로 해서 코드를 수정하여 만들었다. 
 
@@ -105,14 +105,22 @@ embbeding을 빌드하도록 코드를 수정 하였다. /kin/BiMPM/main_local.p
 
  2차 예선 결과 영화 평점 문제에서는 상위권에 들지 못했으므로 상위권에든 유사도 문제에 집중하기로 결정하였다. 결선 준비를 한 부분과 결선에 참가해서 변화한 모델에 대해서 나누어서 설명한다.
  
+  Requirements:
+
+ * Python 3
+ * tensorflow > 1.5
+ * Numpy
+ * nsml
+ 
  - 결선 준비 기간(./final/kin/BiMPM_ensemble/)
  
   유사도 문제 2차 예선 결과를 보면 최상위권 팀들의 유사도 알고리즘 성공률은 이미 97%에 달했다. 즉 판단하기로 알고리즘을 크게 봐꾸어 보는 것은 큰 의미가 없다고 생각 하였다. 그래서 연산량은 많이 들지만 안정적으로 성공률을 올려준다고 알려진 ensemble 기법을 사용하기로 하였다. 앙상블 모델을 만드는 방법에는 여러가지 방법이 있지만 [앙상블 기법 설명](https://www.analyticsvidhya.com/blog/2015/09/questions-ensemble-modeling/) 그 중에 우리는 bagging을 선택하였다. 이 방법은 학습데이터를 여러 랜덤하게 추출하여(중복 추출가능) 여러개의 모델을 학습하고 최종결과를 종합하는 기법이다.
-
+ 
 <p align="center">
 <img  src=./image/bagging.png width="70%" height="70%">
 </p>
 
+ 여러 실험 결과 93% data를 각 모델에 할당 해 주는 것이 좋다는 것을 알 수 있었다. 사용 모델의 개수와 성능이 정비례 하지는 않지만 많을 수록 좋다는 실험 결과를 얻었다. 하지만 GPU 메모리의 한계로 무조건 많이 쓸 수는 없기때문에 최종적으로 8개의 모델을 사용 하였다. 이렇게 앙상블 모델을 만들어서 내부 데이터셋으로 실험 해보았을때 예선 2차 때 사용 했던 보델에 비해서 약 1.5% 정도의 성능 개선이 있었다. 즉, 1위 팀의 성능에 거의 근접했다는 것을 알 수 있었다. 
 
 
 
