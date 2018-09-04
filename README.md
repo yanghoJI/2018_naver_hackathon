@@ -109,7 +109,7 @@ embbeding을 빌드하도록 코드를 수정 하였다. /kin/BiMPM/main_local.p
  
   유사도 문제 2차 예선 결과를 보면 최상위권 팀들의 유사도 알고리즘 성공률은 이미 97%에 달했다. 즉 판단하기로 알고리즘을 크게 봐꾸어 보는 것은 큰 의미가 없다고 생각 하였다. 그래서 연산량은 많이 들지만 안정적으로 성공률을 올려준다고 알려진 ensemble 기법을 사용하기로 하였다. 앙상블 모델을 만드는 방법에는 여러가지 방법이 있지만 [앙상블 기법 설명](https://www.analyticsvidhya.com/blog/2015/09/questions-ensemble-modeling/) 그 중에 우리는 bagging을 선택하였다. 이 방법은 학습데이터를 여러 랜덤하게 추출하여(중복 추출가능) 여러개의 모델을 학습하고 최종결과를 종합하는 기법이다.
   
-![bagging](/image/bagging.png){: width="70%" height="70%")
+![bagging](/image/bagging.png){width="70%" height="70%")
 
 
 
